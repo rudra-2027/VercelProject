@@ -9,12 +9,12 @@ export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
 
   return (
-    <div className="main-auth-wrapper w-full min-h-screen flex items-center justify-center bg-black">
+    <div className="w-full min-h-screen bg-black flex items-center justify-center">
 
-      {/* Gradient background */}
-      <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#0b0b0b] to-[#0a0a0a]">
+      {/* Parent 1 - Global Background */}
+      <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0b0b0b] to-[#0a0a0a]">
 
-        {/* ⭐ CENTER BOTH DIAMOND & FORM TOGETHER */}
+        {/* Parent 2 - Center Container */}
         <div className="relative w-full max-w-5xl h-[620px] flex items-center justify-center">
 
           {/* Background Diamond */}
@@ -22,9 +22,11 @@ export default function Login() {
             <DiamondBackground />
           </div>
 
-          {/* ===== LOGIN FORM ===== */}
+          {/* Parent 3 - Form Wrapper */}
           <motion.div
-            className="form-panel relative z-10 w-[360px] px-8 py-6 rounded-xl bg-black/40 backdrop-blur-xl border border-gray-700/40 shadow-[0_0_35px_rgba(0,0,0,0.55)]"
+            className="relative z-10 w-[360px] px-8 py-6 rounded-xl 
+                       bg-black/40 backdrop-blur-xl border border-gray-700/40 
+                       shadow-[0_0_35px_rgba(0,0,0,0.55)]"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -48,7 +50,7 @@ export default function Login() {
               <AuthIcon icon={<FaEnvelope />} label="Email" />
             </motion.div>
 
-            {/* OR Divider */}
+            {/* Divider */}
             <motion.div
               className="flex items-center gap-3 my-4"
               initial={{ opacity: 0 }}
@@ -88,7 +90,8 @@ export default function Login() {
             {/* Start + Forgot */}
             <div className="mt-4 flex items-center justify-between gap-3">
               <motion.button
-                className="px-4 py-2 rounded-full bg-neon text-black font-semibold shadow-[0_8px_24px_rgba(121,224,25,0.15)]"
+                className="px-4 py-2 rounded-full bg-neon text-black font-semibold 
+                           shadow-[0_8px_24px_rgba(121,224,25,0.15)]"
                 whileHover={{ scale: 1.04 }}
                 onClick={() => alert("Start clicked — wire up auth!")}
               >
@@ -112,7 +115,6 @@ export default function Login() {
                 Sign Up
               </Link>
             </div>
-
           </motion.div>
         </div>
       </div>
@@ -127,7 +129,8 @@ function AuthIcon({ icon, label }) {
       whileHover={{ scale: 1.1 }}
       className="flex flex-col items-center gap-1 text-gray-300"
     >
-      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1a1a1a] border border-gray-700 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1a1a1a] 
+                      border border-gray-700 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
         <span className="text-lg">{icon}</span>
       </div>
       <span className="text-[10px]">{label}</span>
