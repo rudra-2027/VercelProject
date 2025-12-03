@@ -1,38 +1,29 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-/*
-  Improved DiamondBackground with:
-  - optional Start triangle (hideStartTriangle)
-  - optional decorative diamonds (showDecorations)
-  - better animation tuning
-  - stable responsive layout
-*/
-
 export default function DiamondBackground({
   children,
   hideStartTriangle = false,
   showDecorations = true,
 }) {
   return (
-    <div className="relative w-full flex items-center justify-center">
+    <div className="relative w-full min-h-screen flex items-center justify-center">
 
-      {/* Neon glowing border diamond */}
+      {/* Neon Diamond Border */}
       <motion.div
-        className="neon-border pointer-events-none"
+        className="neon-border pointer-events-none absolute"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       />
 
-      {/* Outer rotated diamond */}
+      {/* Main Diamond */}
       <motion.div
-        className="diamond"
+        className="diamond absolute"
         initial={{ scale: 0.94, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Inner card diamond */}
         <motion.div
           className="inner-diamond"
           initial={{ opacity: 0, y: -5 }}
@@ -43,11 +34,11 @@ export default function DiamondBackground({
         </motion.div>
       </motion.div>
 
-      {/* Optional decorative diamonds */}
+      {/* Decorations */}
       {showDecorations && (
         <>
           <motion.div
-            className="mini-diamond"
+            className="mini-diamond absolute"
             style={{ left: "58%", top: "67%" }}
             initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 0.9 }}
@@ -55,7 +46,7 @@ export default function DiamondBackground({
           />
 
           <motion.div
-            className="mini-diamond"
+            className="mini-diamond absolute"
             style={{ left: "40%", top: "73%", width: 45, height: 45 }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 0.8 }}
@@ -64,19 +55,19 @@ export default function DiamondBackground({
         </>
       )}
 
-      {/* Start Triangle (hidden for signup & forgot) */}
+      {/* Start Triangle */}
       {!hideStartTriangle && (
         <>
           <motion.div
-            className="start-triangle"
+            className="start-triangle absolute"
             initial={{ opacity: 0, rotate: 30 }}
             animate={{ opacity: 1, rotate: 45 }}
             whileHover={{ scale: 1.06, rotate: 47 }}
-            transition={{ duration: 0.7, type: "spring" }}
+            transition={{ type: "spring", stiffness: 200, damping: 14 }}
           />
 
           <motion.div
-            className="start-label"
+            className="start-label absolute"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
@@ -85,6 +76,7 @@ export default function DiamondBackground({
           </motion.div>
         </>
       )}
+
     </div>
   );
 }
